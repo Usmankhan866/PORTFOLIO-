@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 250, 250, 250;
+  --primary: 14, 186, 177;
+  --primary-dark: 12, 166, 157;
+  --primary-light: 34, 206, 197;
+}
+
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 10, 10, 10;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb))) fixed;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, rgb(var(--primary)), rgb(var(--primary-light)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-primary {
+  @apply bg-[#0ebab1] hover:bg-[#0ca69d] text-white font-medium py-3 px-6 rounded-full transition-all;
+}
+
+.btn-outline {
+  @apply border border-[#0ebab1] text-[#0ebab1] hover:bg-[#0ebab1]/10 font-medium py-3 px-6 rounded-full transition-all dark:text-[#0ebab1] dark:border-[#0ebab1];
+}
+
+/* Reduced spacing between sections */
+.section-padding {
+  @apply py-10 md:py-16;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+  @apply bg-white dark:bg-black shadow-md border border-gray-100 dark:border-gray-800 rounded-lg p-6 hover:border-[#0ebab1]/50 transition-all;
+}
+
+/* Horizontal scroll animation for technologies */
+.scroll-container {
+  @apply overflow-hidden relative;
+  width: 100%;
+}
+
+.scroll-wrapper {
+  display: flex;
+  width: max-content;
+}
+
+.scroll-right {
+  animation: scroll-right 30s linear infinite;
+}
+
+.scroll-left {
+  animation: scroll-left 30s linear infinite;
+}
+
+.scroll-wrapper:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Chatbot mobile responsiveness */
+@media (max-width: 640px) {
+  .chatbot-window {
+    width: calc(100vw - 2rem);
+    right: 1rem;
+    left: auto;
+  }
+}
+
+/* Custom scrollbar for chatbot */
+.chatbot-messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chatbot-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb {
+  background: #0ebab1;
+  border-radius: 2px;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb:hover {
+  background: #0ca69d;
+}
