@@ -11,55 +11,46 @@ const services = [
     title: "Custom Web Development",
     description: "Tailored web solutions built with the MERN stack to meet your specific business needs.",
     icon: Code,
-    color: "from-blue-500 to-cyan-500",
   },
   {
     title: "WordPress Development",
     description: "Custom WordPress themes and plugins to create powerful, manageable websites.",
     icon: Layout,
-    color: "from-purple-500 to-pink-500",
   },
   {
     title: "E-commerce Solutions",
     description: "Shopify and WooCommerce stores designed to maximize conversions and sales.",
     icon: ShoppingBag,
-    color: "from-green-500 to-emerald-500",
   },
   {
     title: "Database Design",
     description: "Efficient database architecture to ensure your application performs optimally.",
     icon: Database,
-    color: "from-orange-500 to-red-500",
   },
   {
     title: "Web Optimization",
     description: "Performance tuning to ensure your website loads quickly and ranks well.",
     icon: Globe,
-    color: "from-teal-500 to-cyan-500",
   },
   {
     title: "API Development",
     description: "Custom API development to connect your applications and services.",
     icon: Server,
-    color: "from-indigo-500 to-purple-500",
   },
   {
     title: "Responsive Web Design",
     description: "Mobile-first design approach to ensure your website looks great on all devices.",
     icon: Smartphone,
-    color: "from-pink-500 to-rose-500",
   },
   {
     title: "UI/UX Design",
     description: "User-centered design that focuses on creating intuitive and engaging interfaces.",
     icon: Palette,
-    color: "from-yellow-500 to-orange-500",
   },
   {
     title: "SEO Optimization",
     description: "Search engine optimization to improve your website's visibility in search results.",
     icon: Search,
-    color: "from-emerald-500 to-teal-500",
   },
 ]
 
@@ -149,10 +140,8 @@ export default function Services() {
                 transition: { duration: 0.3 },
               }}
             >
-              {/* Gradient background on hover */}
-              <motion.div
-                className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
-              />
+              {/* Consistent gradient background on hover */}
+              <motion.div className="absolute inset-0 bg-gradient-to-br from-[#0ebab1]/5 to-[#22cec5]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <motion.div
                 className="mb-6 p-3 inline-block rounded-lg bg-[#0ebab1]/10 text-[#0ebab1] relative"
@@ -161,12 +150,12 @@ export default function Services() {
               >
                 <service.icon size={24} />
 
-                {/* Glow effect */}
+                {/* Consistent glow effect */}
                 <motion.div className="absolute inset-0 rounded-lg bg-[#0ebab1]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
 
               <motion.h3
-                className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300"
+                className="text-xl font-bold mb-3 group-hover:text-[#0ebab1] transition-colors duration-300"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.1 + 0.5 }}
@@ -183,7 +172,7 @@ export default function Services() {
                 {service.description}
               </motion.p>
 
-              {/* Hover line effect */}
+              {/* Consistent hover line effect */}
               <motion.div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#0ebab1] to-[#22cec5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </motion.div>
           ))}

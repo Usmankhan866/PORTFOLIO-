@@ -15,7 +15,6 @@ const featuredProjects = [
     tags: ["Shopify", "Liquid", "JavaScript"],
     link: "/projects/vapes-direct",
     external: "https://vapesdirect.pk/",
-    gradient: "from-purple-500 to-pink-500",
   },
   {
     title: "Memecoins Agents",
@@ -24,7 +23,6 @@ const featuredProjects = [
     tags: ["React", "Next.js", "Node.js"],
     link: "/projects/business-web",
     external: "http://memecoinsagent.info/",
-    gradient: "from-blue-500 to-cyan-500",
   },
   {
     title: "Devmerce Blog",
@@ -33,7 +31,6 @@ const featuredProjects = [
     tags: ["WordPress", "PHP", "JavaScript"],
     link: "/projects/blogging-web",
     external: "https://devmerce.blog/",
-    gradient: "from-green-500 to-emerald-500",
   },
 ]
 
@@ -137,11 +134,6 @@ export default function ProjectsPreview() {
                   transition: { duration: 0.4, ease: "easeOut" },
                 }}
               >
-                {/* Gradient overlay */}
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 z-10`}
-                />
-
                 <div className="relative h-48 mb-4 overflow-hidden rounded">
                   <motion.div
                     className="absolute inset-0"
@@ -238,11 +230,6 @@ export default function ProjectsPreview() {
                     </motion.span>
                   ))}
                 </motion.div>
-
-                {/* Bottom accent line */}
-                <motion.div
-                  className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${project.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}
-                />
               </motion.div>
             </motion.div>
           ))}
@@ -254,14 +241,19 @@ export default function ProjectsPreview() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.2 }}
         >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link href="/projects" className="btn-outline group">
-              <span className="flex items-center gap-2">
-                View All Projects
-                <motion.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}>
-                  <ArrowRight size={16} />
-                </motion.div>
-              </span>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
+            <Link href="/projects" className="btn-outline group inline-flex items-center gap-2">
+              <span>View All Projects</span>
+              <motion.div
+                animate={{ x: [0, 5, 0] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                }}
+              >
+                <ArrowRight size={16} />
+              </motion.div>
             </Link>
           </motion.div>
         </motion.div>

@@ -114,17 +114,8 @@ export default function Hero() {
 
       <div className="container relative z-10 mt-16 md:mt-0">
         <motion.div className="max-w-3xl" variants={containerVariants} initial="hidden" animate="visible">
-          <motion.span
-            variants={itemVariants}
-            className="text-lg md:text-xl text-[#0ebab1] font-medium mb-2 block relative"
-          >
-            <span className="relative z-10">Welcome to my portfolio!</span>
-            <motion.div
-              className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#0ebab1] to-[#22cec5]"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
-            />
+          <motion.span variants={itemVariants} className="text-lg md:text-xl text-[#0ebab1] font-medium mb-2 block">
+            Welcome to my portfolio!
           </motion.span>
 
           <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
