@@ -4,8 +4,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { Eye, ExternalLink, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
 import { useRef } from "react"
+import { useInView } from "framer-motion"
 
 const featuredProjects = [
   {
@@ -39,223 +39,137 @@ export default function ProjectsPreview() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
         delayChildren: 0.3,
       },
     },
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 60, rotateX: 15 },
+  const cardVariants = {
+    hidden: { opacity: 0, y: 60, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
-      rotateX: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
+      scale: 1,
+      transition: { duration: 0.7, ease: "easeOut" },
     },
   }
 
   return (
-    <section className="section-padding bg-gray-50 dark:bg-black relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute top-0 left-0 w-full h-full">
+    <section className="relative py-20 bg-gray-50 dark:bg-black overflow-hidden">
+      {/* Floating Background Lights */}
+      <div className="absolute inset-0 -z-10">
         <motion.div
-          className="absolute top-20 left-10 w-32 h-32 bg-[#0ebab1]/10 rounded-full blur-2xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
+          className="absolute top-16 left-12 w-32 h-32 bg-[#0ebab1]/20 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.6, 0.4] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-40 h-40 bg-[#22cec5]/10 rounded-full blur-2xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.7, 0.4],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: 1,
-          }}
+          className="absolute bottom-16 right-16 w-40 h-40 bg-[#22cec5]/20 rounded-full blur-3xl"
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
-      <div className="container relative z-10">
+      <div className="container relative z-10 px-6 mx-auto">
+        {/* Section Heading */}
         <motion.div
-          className="text-center mb-10"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Featured Projects
-          </motion.h2>
-          <motion.p
-            className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            A selection of my recent work across various industries
-          </motion.p>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">Featured Projects</h2>
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+            A curated list of projects crafted with cutting-edge technologies.
+          </p>
         </motion.div>
 
+        {/* Projects Grid */}
         <motion.div
           ref={ref}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {featuredProjects.map((project, index) => (
-            <motion.div key={index} className="group relative" variants={itemVariants}>
-              <motion.div
-                className="card overflow-hidden h-full flex flex-col relative"
-                whileHover={{
-                  y: -15,
-                  transition: { duration: 0.4, ease: "easeOut" },
-                }}
-              >
-                <div className="relative h-48 mb-4 overflow-hidden rounded">
-                  <motion.div
-                    className="absolute inset-0"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
+          {featuredProjects.map((project, i) => (
+            <motion.div
+              key={i}
+              className="group relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-md hover:shadow-2xl transition-shadow"
+              variants={cardVariants}
+            >
+              {/* Project Image */}
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-4 transition-opacity duration-300">
+                  <Link
+                    href={project.link}
+                    aria-label={`View details for ${project.title}`}
+                    className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center transition-colors"
                   >
-                    <Image
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      fill
-                      className="object-cover object-top"
-                    />
-                  </motion.div>
-
-                  {/* Overlay with icons on hover */}
-                  <motion.div
-                    className="absolute inset-0 bg-black/60 flex items-center justify-center gap-4"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
+                    <Eye size={20} className="text-white" />
+                  </Link>
+                  <a
+                    href={project.external}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${project.title} live`}
+                    className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center transition-colors"
                   >
-                    <motion.div
-                      initial={{ scale: 0, rotate: -180 }}
-                      whileHover={{ scale: 1, rotate: 0 }}
-                      transition={{ duration: 0.4, delay: 0.1 }}
-                    >
-                      <Link
-                        href={project.link}
-                        className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-colors backdrop-blur-sm"
-                        aria-label="View project details"
-                      >
-                        <Eye size={20} className="text-white" />
-                      </Link>
-                    </motion.div>
-
-                    <motion.div
-                      initial={{ scale: 0, rotate: 180 }}
-                      whileHover={{ scale: 1, rotate: 0 }}
-                      transition={{ duration: 0.4, delay: 0.2 }}
-                    >
-                      <a
-                        href={project.external}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-colors backdrop-blur-sm"
-                        aria-label="Visit live website"
-                      >
-                        <ExternalLink size={20} className="text-white" />
-                      </a>
-                    </motion.div>
-                  </motion.div>
+                    <ExternalLink size={20} className="text-white" />
+                  </a>
                 </div>
+              </div>
 
-                <motion.h3
-                  className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300 flex items-center gap-2"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.2 + 0.5 }}
-                >
+              {/* Content */}
+              <div className="p-6 flex flex-col h-full">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-[#0ebab1] transition-colors flex items-center gap-2">
                   {project.title}
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 0, x: -10 }}
-                    whileHover={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <ArrowRight size={16} />
-                  </motion.div>
-                </motion.h3>
-
-                <motion.p
-                  className="text-gray-600 dark:text-gray-400 mb-4 flex-grow"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: index * 0.2 + 0.7 }}
-                >
-                  {project.description}
-                </motion.p>
-
-                <motion.div
-                  className="flex flex-wrap gap-2 mt-auto"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.2 + 0.9 }}
-                >
-                  {project.tags.map((tag, tagIndex) => (
-                    <motion.span
-                      key={tagIndex}
-                      className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:bg-[#0ebab1]/10 hover:text-[#0ebab1] transition-colors duration-300"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.2 }}
+                  <ArrowRight size={16} />
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-grow">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {project.tags.map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#0ebab1]/10 hover:text-[#0ebab1] transition-colors"
                     >
                       {tag}
-                    </motion.span>
+                    </span>
                   ))}
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </motion.div>
           ))}
         </motion.div>
 
+        {/* View All Button */}
         <motion.div
-          className="mt-8 text-center"
+          className="mt-14 text-center"
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 1 }}
         >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
-            <Link href="/projects" className="btn-outline group inline-flex items-center gap-2">
-              <span>View All Projects</span>
-              <motion.div
-                animate={{ x: [0, 5, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
-                }}
-              >
-                <ArrowRight size={16} />
-              </motion.div>
-            </Link>
-          </motion.div>
+          <Link href="/projects">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 rounded-full bg-[#0ebab1] hover:bg-[#22cec5] text-white font-medium shadow-lg transition-all inline-flex items-center gap-2"
+            >
+              View All Projects <ArrowRight size={18} />
+            </motion.button>
+          </Link>
         </motion.div>
       </div>
     </section>
