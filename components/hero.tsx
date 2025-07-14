@@ -3,147 +3,219 @@
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import dynamic from "next/dynamic"
-
-// Dynamically imported Lottie animation replaces static image
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
-import pulseAnimation from "@/public/animations/subtle-pulse.json"
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
 
   useEffect(() => {
-    const vid = videoRef.current
-    if (!vid) return
-    const handler = () => setVideoLoaded(true)
-    vid.addEventListener("loadeddata", handler)
-    return () => vid.removeEventListener("loadeddata", handler)
+    const handleVideoLoad = () => setIsVideoLoaded(true)
+    const current = videoRef.current
+
+    if (current) {
+      current.addEventListener("loadeddata", handleVideoLoad)
+    }
+
+    return () => {
+      if (current) current.removeEventListener("loadeddata", handleVideoLoad)
+    }
   }, [])
 
-  const mainVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2, delayChildren: 0.4 } }
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
   }
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
   }
 
-  const btnVariants = {
-    hover: { scale: 1.05 },
-    tap: { scale: 0.95 }
+  const typeVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { delay: 1.5, duration: 1.2 },
+    },
   }
+
+  const buttonVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+    hover: {
+      scale: 1.05,
+      transition: {
+        duration: 0.2,
+      },
+    },
+    tap: {
+      scale: 0.95,
+    },
+  }
+
+  const stats = [
+    "3+ Years Experience",
+    "15+ Projects Completed",
+    "100% Client Satisfaction",
+  ]
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
-      {/* Background shapes */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-16 left-8 w-64 h-64 bg-[#0ebab1]/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-16 right-8 w-80 h-80 bg-[#22cec5]/20 rounded-full blur-3xl animate-pulse delay-1000" />
+    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
+      {/* Glowing animated blobs */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-24 left-10 w-72 h-72 bg-[#0ebab1]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-16 right-10 w-96 h-96 bg-[#22cec5]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[#0ebab1]/5 to-[#22cec5]/5 rounded-full blur-3xl animate-spin-slow"></div>
       </div>
 
-      {/* Video + Gradient overlay */}
-      <div className="absolute inset-0 -z-20">
+      {/* Video + fallback image */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.video
           ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          initial={{ opacity: 0.0, scale: 1.05 }}
-          animate={{ opacity: videoLoaded ? 0.3 : 0, scale: videoLoaded ? 1 : 1.05 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="object-cover w-full h-full"
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{
+            opacity: isVideoLoaded ? 0.4 : 0,
+            scale: isVideoLoaded ? 1 : 1.1,
+          }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="object-cover w-full h-full dark:opacity-20"
         >
-          <source src="/videos/hero-video.mp4" type="video/mp4" />
+          <source src="/videos/modern-dev.mp4" type="video/mp4" />
         </motion.video>
-        {!videoLoaded && (
-          <div className="absolute inset-0 bg-cover bg-center opacity-40 dark:opacity-10" style={{ backgroundImage: "url(/images/hero-fallback.jpg)" }} />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/50 to-white dark:from-black/70 dark:via-black/50 dark:to-black" />
+
+        <motion.div
+          initial={{ opacity: 0.4 }}
+          animate={{ opacity: isVideoLoaded ? 0 : 0.4 }}
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0 bg-cover bg-center dark:opacity-20"
+          style={{ backgroundImage: "url(/images/dev-cover.jpg)" }}
+        ></motion.div>
+
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white dark:from-black/70 dark:via-black/50 dark:to-black"></div>
       </div>
 
-      {/* Main content */}
-      <div className="container mx-auto px-6 relative z-10">
+      {/* Main Content */}
+      <div className="container relative z-10 mt-16 md:mt-0">
         <motion.div
-          className="max-w-3xl mx-auto text-center flex flex-col gap-6"
+          className="max-w-3xl"
+          variants={containerVariants}
           initial="hidden"
           animate="visible"
-          variants={mainVariants}
         >
-          <motion.span variants={itemVariants} className="text-lg md:text-xl font-medium text-[#0ebab1]">
-            Welcome to my portfolio!
+          <motion.span variants={itemVariants} className="text-lg md:text-xl text-[#0ebab1] font-semibold mb-2 block uppercase tracking-wider">
+            Hello there!
           </motion.span>
 
-          <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold">
-            Hey, I'm{" "}
-            <motion.span
-              className="relative inline-block gradient-text"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              Muhammad Usman
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#0ebab1]/20 to-[#22cec5]/20 blur-lg rounded-lg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 1 }}
-              />
-            </motion.span>{" "}
-            — Web Developer
+          <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight text-gray-900 dark:text-white">
+            I’m <span className="gradient-text">Muhammad Usman</span>
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="text-xl md:text-2xl text-gray-600 dark:text-gray-300">
-            I craft bespoke web solutions that elevate businesses online.
+          <motion.div variants={typeVariants} className="mb-6 text-2xl md:text-3xl font-semibold text-[#0ebab1]">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.2, duration: 0.8 }}
+            >
+              Web Developer & UI Designer
+            </motion.span>
+          </motion.div>
+
+          <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8">
+            I craft modern web experiences that are fast, accessible, and beautiful — built with code and creativity.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center gap-4">
-            <motion.div whileHover="hover" whileTap="tap" variants={btnVariants}>
-              <Link href="/contact" className="btn-primary inline-block px-8 py-3">
-                Get In Touch
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+            <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
+              <Link href="/contact" className="btn-primary text-center">
+                Let's Collaborate
               </Link>
             </motion.div>
-            <motion.div whileHover="hover" whileTap="tap" variants={btnVariants}>
-              <Link href="/projects" className="btn-outline inline-block px-8 py-3">
-                View My Work
+            <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
+              <Link href="/projects" className="btn-outline text-center">
+                Explore Projects
               </Link>
             </motion.div>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="mt-12 grid sm:flex justify-center gap-8 text-center">
-            {["3+ Years Experience", "15+ Projects Completed", "100% Client Satisfaction"].map((txt, i) => (
+          {/* Stats */}
+          <motion.div className="mt-16 flex flex-wrap gap-6">
+            {stats.map((stat, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 2 + i * 0.2, duration: 0.6 }}
-                className="flex items-center gap-2 text-gray-600 dark:text-gray-300"
+                className="flex items-center gap-2 text-gray-700 dark:text-gray-300"
               >
                 <motion.div
                   className="h-2 w-2 rounded-full bg-[#0ebab1]"
                   animate={{
-                    scale: [1, 1.3, 1],
+                    scale: [1, 1.2, 1],
                     opacity: [0.7, 1, 0.7],
                   }}
                   transition={{
                     duration: 2,
                     repeat: Infinity,
-                    delay: i * 0.2,
+                    delay: i * 0.3,
                   }}
                 />
-                {txt}
+                {stat}
               </motion.div>
             ))}
           </motion.div>
-
-          {/* Lottie-Based Foreground Animation */}
-          <motion.div className="mx-auto mt-16 w-48 h-48">
-            <Lottie animationData={pulseAnimation} loop autoplay />
-          </motion.div>
         </motion.div>
       </div>
+
+      {/* Floating Particles */}
+      <motion.div
+        className="absolute top-1/4 right-10 w-4 h-4 bg-[#0ebab1] rounded-full opacity-60"
+        animate={{
+          y: [0, -20, 0],
+          opacity: [0.6, 1, 0.6],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 left-20 w-6 h-6 bg-[#22cec5] rounded-full opacity-40"
+        animate={{
+          y: [0, 15, 0],
+          opacity: [0.4, 0.8, 0.4],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+      />
     </section>
   )
 }
