@@ -34,7 +34,7 @@ const testimonials = [
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [direction, setDirection] = useState(0)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+  const intervalRef = useRef(null)
 
   const startAutoplay = () => {
     if (intervalRef.current) clearInterval(intervalRef.current)
@@ -52,7 +52,7 @@ export default function Testimonials() {
     }
   }, [])
 
-  const handleDotClick = (index: number) => {
+  const handleDotClick = (index) => {
     if (intervalRef.current) clearInterval(intervalRef.current)
 
     setDirection(index > activeIndex ? 1 : -1)
@@ -77,7 +77,7 @@ export default function Testimonials() {
   }
 
   const variants = {
-    enter: (direction: number) => ({
+    enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,
     }),
@@ -85,7 +85,7 @@ export default function Testimonials() {
       x: 0,
       opacity: 1,
     },
-    exit: (direction: number) => ({
+    exit: (direction) => ({
       x: direction > 0 ? -1000 : 1000,
       opacity: 0,
     }),

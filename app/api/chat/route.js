@@ -9,7 +9,7 @@ function getCurrentAvailability() {
   // Dynamic availability based on current time
   const availability = {
     status: "Available", // Available, Partially Available, Fully Booked
-    nextAvailable: null as string | null,
+    nextAvailable: null,
     currentCapacity: "2-3 new projects",
     responseTime: "Within 24 hours",
     preferredProjectTypes: ["React Development", "Shopify Stores", "CMS Solutions"],
@@ -108,7 +108,7 @@ const responses = {
   },
 }
 
-function getAIResponse(message: string): string {
+function getAIResponse(message) {
   const lowerMessage = message.toLowerCase()
 
   // Availability specific queries
@@ -326,7 +326,7 @@ function getAIResponse(message: string): string {
   return professionalResponses[Math.floor(Math.random() * professionalResponses.length)]
 }
 
-export async function POST(req: Request) {
+export async function POST(req) {
   try {
     const { messages } = await req.json()
     const lastMessage = messages[messages.length - 1]

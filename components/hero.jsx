@@ -5,7 +5,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 
 export default function Hero() {
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const videoRef = useRef(null)
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
 
   useEffect(() => {

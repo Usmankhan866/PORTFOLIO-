@@ -1,0 +1,14 @@
+{
+  // Configure JS project paths and disable type acquisition to avoid missing @types errors
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "checkJs": false,
+    "types": []
+  },
+  "typeAcquisition": {
+    "enable": false
+  }
+}

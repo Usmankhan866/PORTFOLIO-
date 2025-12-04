@@ -1,24 +1,17 @@
 "use client"
 
-import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { MessageCircle, X, Send, Bot, User, Minimize2, Phone, Mail, Calendar, Clock } from "lucide-react"
 
-interface Message {
-  role: "user" | "assistant"
-  content: string
-}
-
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
-  const [messages, setMessages] = useState<Message[]>([])
+  const [messages, setMessages] = useState([])
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [showWelcome, setShowWelcome] = useState(false)
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const messagesEndRef = useRef(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -45,11 +38,11 @@ export default function Chatbot() {
     setIsMinimized(!isMinimized)
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!input.trim() || isLoading) return
 
-    const userMessage: Message = { role: "user", content: input }
+    const userMessage = { role: "user", content: input }
     setMessages((prev) => [...prev, userMessage])
     setInput("")
     setIsLoading(true)
@@ -93,12 +86,12 @@ export default function Chatbot() {
     { text: "Rush Projects", icon: Send, query: "Can you handle urgent projects?" },
   ]
 
-  const handleQuickQuestion = (question: string) => {
+  const handleQuickQuestion = (question) => {
     setInput(question)
   }
 
-  const handleAvailabilityAction = (query: string) => {
-    const userMessage: Message = { role: "user", content: query }
+  const handleAvailabilityAction = (query) => {
+    const userMessage = { role: "user", content: query }
     setMessages((prev) => [...prev, userMessage])
     setIsLoading(true)
 

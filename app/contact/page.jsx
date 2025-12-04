@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
 import { Mail, Phone, MapPin, Send, CheckCircle, Clock, MessageSquare } from "lucide-react"
 import { motion } from "framer-motion"
@@ -18,12 +16,12 @@ export default function Contact() {
   const isHeroInView = useInView(heroRef, { once: true })
   const isFormInView = useInView(formRef, { once: true, margin: "-100px" })
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
 
     try {
-      const formElement = e.target as HTMLFormElement
+      const formElement = e.target
       const formData = new FormData(formElement)
 
       const response = await fetch("/api/contact", {
