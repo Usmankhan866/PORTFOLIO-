@@ -1,4 +1,9 @@
+"use client"
+
 import Image from "next/image"
+import { motion } from "framer-motion"
+import { useRef } from "react"
+import { useInView } from "framer-motion"
 
 const technologies = [
   { name: "HTML", category: "Frontend", icon: "/icons/html5.png" },
@@ -31,68 +36,87 @@ const additionalTechnologies = [
 ]
 
 export default function Technologies() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  
   // Duplicate the technologies arrays to create a seamless loop
   const duplicatedTechnologies = [...technologies, ...technologies]
   const duplicatedAdditionalTech = [...additionalTechnologies, ...additionalTechnologies]
 
   return (
-    <section className="section-padding bg-gray-50 dark:bg-black">
-      <div className="container">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Technologies I Work With</h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            I stay up-to-date with the latest technologies to deliver cutting-edge solutions
-          </p>
-        </div>
+    <section className="relative py-12 md:py-16 bg-white dark:bg-gray-900">
+<div className="w-full max-w-[1400px] mx-auto relative z-10 px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-10">
+          {/* Left Side - Text Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              Technologies I Work With
+            </h2>
+            <p className="text-base lg:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+              I stay up-to-date with the latest technologies to deliver cutting-edge solutions that drive business growth and innovation.
+            </p>
+          </motion.div>
 
-        <div className="space-y-6">
-          {/* First row - slides left to right */}
-          <div className="scroll-container">
-            <div className="scroll-wrapper scroll-right">
-              {duplicatedTechnologies.map((tech, index) => (
-                <div
-                  key={`top-${index}`}
-                  className="px-6 py-3 mx-2 rounded-full border border-gray-200 bg-white dark:bg-black dark:border-gray-800 hover:border-[#0ebab1] hover:bg-[#0ebab1]/5 transition-all flex items-center"
-                >
-                  <div className="relative w-6 h-6 mr-2">
-                    <Image
-                      src={tech.icon || "/placeholder.svg"}
-                      alt={tech.name}
-                      width={24}
-                      height={24}
-                      className="object-contain"
-                    />
+          {/* Right Side - Technology Tags */}
+          <motion.div
+            ref={ref}
+            className="space-y-4"
+            initial={{ opacity: 0, x: 20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            {/* First row - slides left to right */}
+            <div className="scroll-container">
+              <div className="scroll-wrapper scroll-right">
+                {duplicatedTechnologies.map((tech, index) => (
+                  <div
+                    key={`top-${index}`}
+                    className="px-5 py-2.5 mx-2 rounded-full border-2 border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all flex items-center whitespace-nowrap"
+                  >
+                    <div className="relative w-5 h-5 mr-2">
+                      <Image
+                        src={tech.icon || "/placeholder.svg"}
+                        alt={tech.name}
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                      />
+                    </div>
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">{tech.name}</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">• {tech.category}</span>
                   </div>
-                  <span className="text-sm font-medium">{tech.name}</span>
-                  <span className="text-xs text-gray-500 ml-2">{tech.category}</span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Second row - slides right to left */}
-          <div className="scroll-container">
-            <div className="scroll-wrapper scroll-left">
-              {duplicatedAdditionalTech.map((tech, index) => (
-                <div
-                  key={`bottom-${index}`}
-                  className="px-6 py-3 mx-2 rounded-full border border-gray-200 bg-white dark:bg-black dark:border-gray-800 hover:border-[#0ebab1] hover:bg-[#0ebab1]/5 transition-all flex items-center"
-                >
-                  <div className="relative w-6 h-6 mr-2">
-                    <Image
-                      src={tech.icon || "/placeholder.svg"}
-                      alt={tech.name}
-                      width={24}
-                      height={24}
-                      className="object-contain"
-                    />
+            {/* Second row - slides right to left */}
+            <div className="scroll-container">
+              <div className="scroll-wrapper scroll-left">
+                {duplicatedAdditionalTech.map((tech, index) => (
+                  <div
+                    key={`bottom-${index}`}
+                    className="px-5 py-2.5 mx-2 rounded-full border-2 border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all flex items-center whitespace-nowrap"
+                  >
+                    <div className="relative w-5 h-5 mr-2">
+                      <Image
+                        src={tech.icon || "/placeholder.svg"}
+                        alt={tech.name}
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                      />
+                    </div>
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">{tech.name}</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">• {tech.category}</span>
                   </div>
-                  <span className="text-sm font-medium">{tech.name}</span>
-                  <span className="text-xs text-gray-500 ml-2">{tech.category}</span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

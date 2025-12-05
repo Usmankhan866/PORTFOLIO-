@@ -1,79 +1,92 @@
-"use client"
+  "use client"
 
 import {
-  Code,
-  Layout,
-  ShoppingBag,
-  Database,
-  Globe,
-  Server,
-  Smartphone,
-  Palette,
-  Search,
+  Settings,
+  DollarSign,
+  BarChart3,
+  Users,
+  ArrowLeft,
+  ArrowRight,
 } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { useInView } from "framer-motion"
 
 const services = [
-  { title: "Custom Web Development", description: "Tailored MERN stack solutions to fit your unique business model.", icon: Code },
-  { title: "WordPress Development", description: "Build manageable, scalable WordPress websites with custom themes/plugins.", icon: Layout },
-  { title: "E-commerce Solutions", description: "Shopify & WooCommerce stores optimized for conversions and growth.", icon: ShoppingBag },
-  { title: "Database Design", description: "Optimized, scalable databases with clean schema design.", icon: Database },
-  { title: "Web Optimization", description: "Speed and SEO optimizations that improve UX and rankings.", icon: Globe },
-  { title: "API Development", description: "Robust RESTful and GraphQL APIs to connect and empower your apps.", icon: Server },
-  { title: "Responsive Design", description: "Fully responsive, mobile-first interfaces for every screen size.", icon: Smartphone },
-  { title: "UI/UX Design", description: "Clean, intuitive UI with strategic UX design for user retention.", icon: Palette },
-  { title: "SEO Optimization", description: "Technical and on-page SEO that gets your site found faster.", icon: Search },
+  { 
+    title: "Strategic Planning", 
+    description: "Craft winning strategies for sustainable growth.", 
+    icon: Settings,
+    highlighted: false 
+  },
+  { 
+    title: "Financial Advisory", 
+    description: "Optimize your financial resources and investments.", 
+    icon: DollarSign,
+    highlighted: true 
+  },
+  { 
+    title: "Market Research", 
+    description: "Gain insights for informed decision-making.", 
+    icon: BarChart3,
+    highlighted: false 
+  },
+  { 
+    title: "HR Management", 
+    description: "Build a motivated and efficient workforce.", 
+    icon: Users,
+    highlighted: false 
+  },
 ]
 
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
   },
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 }
 
 export default function Services() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : 0))
+  }
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev < services.length - 4 ? prev + 1 : prev))
+  }
 
   return (
-    <section className="relative py-20 bg-white dark:bg-black">
-      {/* Subtle Dot Pattern Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="w-full h-full bg-[radial-gradient(circle,rgba(14,186,177,0.1)_1px,transparent_1px)] bg-[size:24px_24px]" />
-      </div>
+    <section className="relative py-12 md:py-16 bg-white dark:bg-gray-900">
+     <div className="w-full max-w-[1400px] mx-auto relative z-10 px-4 sm:px-6">
 
-      <div className="container mx-auto relative z-10 px-6">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-            What I Can Do For You
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+            Tailored Solutions for Your Success
           </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-            A suite of full-stack services crafted to build, grow, and scale your digital presence.
-          </p>
         </motion.div>
 
         <motion.div
           ref={ref}
-          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -81,43 +94,90 @@ export default function Services() {
           {services.map((service, idx) => (
             <motion.div
               key={idx}
-              className="group relative p-6 rounded-2xl shadow-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-300"
+              className={`group relative p-6 rounded-2xl transition-all duration-300 ${
+                service.highlighted
+                  ? "bg-[#f4f27e] dark:bg-[#e8e66f]"
+                  : "bg-gray-100 dark:bg-gray-800"
+              }`}
               variants={cardVariants}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -5, scale: 1.02 }}
             >
-              {/* Icon */}
-              <div className="relative w-12 h-12 flex items-center justify-center mb-5 rounded-xl bg-[#0ebab1]/10 text-[#0ebab1] group-hover:rotate-[360deg] transition-transform duration-500">
-                <service.icon size={24} />
+              {/* Icon in rounded square */}
+              <div className={`relative w-12 h-12 flex items-center justify-center mb-4 rounded-xl ${
+                service.highlighted 
+                  ? "bg-gray-900 dark:bg-gray-800" 
+                  : "bg-gray-900 dark:bg-gray-700"
+              }`}>
+                <service.icon 
+                  size={24} 
+                  className="text-white"
+                  strokeWidth={1.5}
+                />
               </div>
 
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-[#0ebab1] transition-colors">
+              <h3 className={`text-lg font-bold mb-2 ${
+                service.highlighted
+                  ? "text-gray-900 dark:text-gray-900"
+                  : "text-gray-900 dark:text-white"
+              }`}>
                 {service.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
+              
+              <p className={`leading-relaxed text-sm ${
+                service.highlighted
+                  ? "text-gray-700 dark:text-gray-700"
+                  : "text-gray-600 dark:text-gray-400"
+              }`}>
                 {service.description}
               </p>
 
-              {/* Hover line at bottom */}
-              <div className="absolute left-0 bottom-0 w-full h-1 bg-gradient-to-r from-[#0ebab1] to-[#22cec5] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              {/* Large background number/icon effect */}
+              <div className="absolute bottom-2 right-2 opacity-5">
+                <service.icon size={60} strokeWidth={1} />
+              </div>
             </motion.div>
           ))}
         </motion.div>
 
+        {/* Bottom Section - Button and Navigation */}
         <motion.div
-          className="mt-14 text-center"
+          className="flex flex-col sm:flex-row items-center justify-between gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
           <Link href="/services">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 text-white font-medium bg-[#0ebab1] hover:bg-[#22cec5] rounded-full shadow-lg transition duration-300"
+              className="px-6 py-3 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 rounded-full transition-all duration-300 shadow-md"
             >
-              Explore Full Services
+              View More Services
             </motion.button>
           </Link>
+
+          {/* Navigation Arrows */}
+          <div className="flex gap-2">
+            <motion.button
+              onClick={handlePrev}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="w-10 h-10 flex items-center justify-center bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors shadow-lg"
+              aria-label="Previous"
+            >
+              <ArrowLeft size={18} />
+            </motion.button>
+            
+            <motion.button
+              onClick={handleNext}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="w-10 h-10 flex items-center justify-center bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors shadow-lg"
+              aria-label="Next"
+            >
+              <ArrowRight size={18} />
+            </motion.button>
+          </div>
         </motion.div>
       </div>
     </section>

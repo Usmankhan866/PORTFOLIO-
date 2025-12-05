@@ -1,52 +1,65 @@
+"use client"
+
 import Link from "next/link"
-import Image from "next/image"
-import { Github, Linkedin, Twitter, Mail } from "lucide-react"
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
+import { useState } from "react"
 
 export default function Footer() {
+  const [email, setEmail] = useState("")
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // Handle newsletter subscription
+    console.log("Newsletter subscription:", email)
+    setEmail("")
+  }
+
   return (
-    <footer className="bg-gray-50 dark:bg-black border-t border-gray-200 dark:border-gray-800">
-      <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-            <Link href="/" className="flex items-center mb-4">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Black_White_Modern_Letter_U_Logo_-removebg-preview-KmgjWzhZkqwtdYepi0B3FgBsT3DgTC.png"
-                alt="Usman Khan Logo"
-                width={120}
-                height={40}
-                className="object-contain"
-              />
-            </Link>
-            <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md">
-              Crafting exceptional digital experiences with cutting-edge technology and creative solutions.
+    <footer className="bg-[#222222] dark:bg-[#222222] text-white">
+      <div className="container mx-auto px-4 sm:px-6 py-12 md:py-16">
+        
+        {/* Newsletter Section */}
+        <div className="mb-12 md:mb-16">
+          <h3 className="text-lg md:text-xl font-semibold mb-4">
+            Stay Informed. Subscribe to our Newsletter!
+          </h3>
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+              className="flex-1 px-4 py-2.5 rounded-full bg-[#3f4654] dark:bg-[#3f4654] border border-gray-600 dark:border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-gray-500 text-sm"
+            />
+            <button
+              type="submit"
+              className="px-6 py-2.5 bg-[#f4f27e] hover:bg-[#e8e66f] text-gray-900 font-semibold rounded-full transition-colors text-sm whitespace-nowrap"
+            >
+              Contact Us
+            </button>
+          </form>
+        </div>
+
+        {/* Footer Grid */}
+        <div className="dark:bg-[#222222] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+          
+          {/* Address */}
+          <div>
+            <h4 className="font-semibold mb-4 text-base">Address</h4>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              123 Business Blvd, City, ST ZIP
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-[#0ebab1] dark:hover:text-[#0ebab1]">
-                <Github size={20} />
-                <span className="sr-only">GitHub</span>
-              </a>
-              <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-[#0ebab1] dark:hover:text-[#0ebab1]">
-                <Linkedin size={20} />
-                <span className="sr-only">LinkedIn</span>
-              </a>
-              <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-[#0ebab1] dark:hover:text-[#0ebab1]">
-                <Twitter size={20} />
-                <span className="sr-only">Twitter</span>
-              </a>
-              <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-[#0ebab1] dark:hover:text-[#0ebab1]">
-                <Mail size={20} />
-                <span className="sr-only">Email</span>
-              </a>
-            </div>
           </div>
 
+          {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4 dark:text-white">Quick Links</h3>
+            <h4 className="font-semibold mb-4 text-base">Quick Links</h4>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/"
-                  className="text-gray-600 dark:text-gray-400 hover:text-[#0ebab1] dark:hover:text-[#0ebab1]"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
                   Home
                 </Link>
@@ -54,58 +67,166 @@ export default function Footer() {
               <li>
                 <Link
                   href="/about"
-                  className="text-gray-600 dark:text-gray-400 hover:text-[#0ebab1] dark:hover:text-[#0ebab1]"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  About Me
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/projects"
-                  className="text-gray-600 dark:text-gray-400 hover:text-[#0ebab1] dark:hover:text-[#0ebab1]"
-                >
-                  Projects
+                  About Us
                 </Link>
               </li>
               <li>
                 <Link
                   href="/services"
-                  className="text-gray-600 dark:text-gray-400 hover:text-[#0ebab1] dark:hover:text-[#0ebab1]"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  Services
+                  Pricing
                 </Link>
               </li>
               <li>
                 <Link
                   href="/contact"
-                  className="text-gray-600 dark:text-gray-400 hover:text-[#0ebab1] dark:hover:text-[#0ebab1]"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  Contact
+                  Blog
                 </Link>
               </li>
             </ul>
           </div>
 
+          {/* Services */}
           <div>
-            <h3 className="font-semibold mb-4 dark:text-white">Contact</h3>
+            <h4 className="font-semibold mb-4 text-base">Services</h4>
             <ul className="space-y-2">
-              <li className="text-gray-600 dark:text-gray-400">
-                <strong className="text-gray-800 dark:text-gray-300">Email:</strong> Usmankhan86622@gmail.com
+              <li>
+                <Link
+                  href="/services"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  Strategic Planning
+                </Link>
               </li>
-              <li className="text-gray-600 dark:text-gray-400">
-                <strong className="text-gray-800 dark:text-gray-300">Phone:</strong> 03150431096
+              <li>
+                <Link
+                  href="/services"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  Financial Advisory
+                </Link>
               </li>
-              <li className="text-gray-600 dark:text-gray-400">
-                <strong className="text-gray-800 dark:text-gray-300">Location:</strong> Islamabad, Pakistan
+              <li>
+                <Link
+                  href="/services"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  Market Research
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  HR Management
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  Technology Integration
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Information */}
+          <div>
+            <h4 className="font-semibold mb-4 text-base">Information</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  Support
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  Customer Service
+                </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 dark:border-gray-800 mt-12 pt-8 text-center text-gray-500 dark:text-gray-400 text-sm">
-          <p>© {new Date().getFullYear()} Muhammad Usman Khan. All rights reserved.</p>
+        {/* Bottom Section */}
+        <div className="border-t border-gray-700 dark:border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          
+          {/* Logo and Copyright */}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-[#f4f27e] rounded flex items-center justify-center">
+                <span className="text-gray-900 font-bold text-lg">B</span>
+              </div>
+              <span className="font-bold text-xl">Biztar.</span>
+            </div>
+          </div>
+
+          <p className="text-gray-400 text-sm text-center md:text-left order-3 md:order-2">
+            © 2023 Biztar Consulting. All Rights Reserved.
+          </p>
+
+          {/* Social Icons */}
+          <div className="flex items-center gap-3 order-2 md:order-3">
+            <a
+              href="#"
+              className="w-9 h-9 rounded-full bg-[#f4f27e] flex items-center justify-center hover:bg-[#e8e66f] transition-colors"
+            >
+              <Linkedin size={18} className="text-gray-900" />
+            </a>
+            <a
+              href="#"
+              className="w-9 h-9 rounded-full bg-[#f4f27e] flex items-center justify-center hover:bg-[#e8e66f] transition-colors"
+            >
+              <Facebook size={18} className="text-gray-900" />
+            </a>
+            <a
+              href="#"
+              className="w-9 h-9 rounded-full bg-[#f4f27e] flex items-center justify-center hover:bg-[#e8e66f] transition-colors"
+            >
+              <Instagram size={18} className="text-gray-900" />
+            </a>
+            <a
+              href="#"
+              className="w-9 h-9 rounded-full bg-[#f4f27e] flex items-center justify-center hover:bg-[#e8e66f] transition-colors"
+            >
+              <Twitter size={18} className="text-gray-900" />
+            </a>
+          </div>
         </div>
       </div>
+
+      {/* Phone and Email Section */}
+      
     </footer>
   )
 }

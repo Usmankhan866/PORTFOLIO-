@@ -1,5 +1,6 @@
 import Hero from "../components/hero"
 import Services from "../components/services"
+import Methodology from "../components/methodology"
 import Technologies from "../components/technologies"
 import Projects from "../components/projects-preview"
 import Testimonials from "../components/testimonials"
@@ -10,6 +11,7 @@ export default function Home() {
     <>
       <Hero />
       <Services />
+      <Methodology />
       <Technologies />
       <Projects />
       <Testimonials />

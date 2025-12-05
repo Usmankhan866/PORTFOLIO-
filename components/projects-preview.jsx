@@ -38,69 +38,57 @@ export default function ProjectsPreview() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3,
-      },
-    },
-  }
-
   const cardVariants = {
-    hidden: { opacity: 0, y: 60, scale: 0.95 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: { duration: 0.7, ease: "easeOut" },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   }
 
   return (
-    <section className="relative py-20 bg-gray-50 dark:bg-black overflow-hidden">
-      {/* Floating Background Lights */}
-      <div className="absolute inset-0 -z-10">
-        <motion.div
-          className="absolute top-16 left-12 w-32 h-32 bg-[#0ebab1]/20 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.6, 0.4] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-16 right-16 w-40 h-40 bg-[#22cec5]/20 rounded-full blur-3xl"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-
-      <div className="container relative z-10 px-6 mx-auto">
-        {/* Section Heading */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">Featured Projects</h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-            A curated list of projects crafted with cutting-edge technologies.
-          </p>
-        </motion.div>
+    <section className="relative py-12 md:py-16 bg-gray-50 dark:bg-gray-950 overflow-hidden">
+<div className="w-full max-w-[1400px] mx-auto relative z-10 px-4 sm:px-6">
+        
+        {/* Header Section - Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 mb-10 md:mb-12 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
+              Featured Projects
+            </h2>
+          </motion.div>
+          
+          <motion.div
+            className="flex items-start lg:items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+              A curated list of projects crafted with cutting-edge technologies to deliver exceptional user experiences and business results.
+            </p>
+          </motion.div>
+        </div>
 
         {/* Projects Grid */}
         <motion.div
           ref={ref}
-          className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
-          variants={containerVariants}
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
           {featuredProjects.map((project, i) => (
             <motion.div
               key={i}
-              className="group relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-md hover:shadow-2xl transition-shadow"
+              className="group relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-md hover:shadow-xl transition-all duration-300"
               variants={cardVariants}
+              custom={i}
+              whileHover={{ y: -5 }}
             >
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
@@ -112,38 +100,37 @@ export default function ProjectsPreview() {
                   loading="lazy"
                 />
                 {/* Hover overlay */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-4 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 flex items-center justify-center gap-3 transition-opacity duration-300">
                   <Link
                     href={project.link}
                     aria-label={`View details for ${project.title}`}
-                    className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center transition-colors"
+                    className="w-10 h-10 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm flex items-center justify-center transition-colors shadow-lg"
                   >
-                    <Eye size={20} className="text-white" />
+                    <Eye size={18} className="text-gray-900" />
                   </Link>
                   <a
                     href={project.external}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Visit ${project.title} live`}
-                    className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center transition-colors"
+                    className="w-10 h-10 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm flex items-center justify-center transition-colors shadow-lg"
                   >
-                    <ExternalLink size={20} className="text-white" />
+                    <ExternalLink size={18} className="text-gray-900" />
                   </a>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6 flex flex-col h-full">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-[#0ebab1] transition-colors flex items-center gap-2">
+              <div className="p-5 flex flex-col">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
                   {project.title}
-                  <ArrowRight size={16} />
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-grow">{project.description}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {project.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#0ebab1]/10 hover:text-[#0ebab1] transition-colors"
+                      className="text-xs px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
                     >
                       {tag}
                     </span>
@@ -156,16 +143,16 @@ export default function ProjectsPreview() {
 
         {/* View All Button */}
         <motion.div
-          className="mt-14 text-center"
-          initial={{ opacity: 0, y: 30 }}
+          className="mt-10 flex justify-start"
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
           <Link href="/projects">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 rounded-full bg-[#0ebab1] hover:bg-[#22cec5] text-white font-medium shadow-lg transition-all inline-flex items-center gap-2"
+              className="px-6 py-3 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 transition-all inline-flex items-center gap-2 shadow-md text-sm"
             >
               View All Projects <ArrowRight size={18} />
             </motion.button>
