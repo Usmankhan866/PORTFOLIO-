@@ -15,26 +15,26 @@ import { useInView } from "framer-motion"
 
 const services = [
   { 
-    title: "Strategic Planning", 
-    description: "Craft winning strategies for sustainable growth.", 
+    title: "Web Development", 
+    description: "Build responsive and scalable web applications.", 
     icon: Settings,
     highlighted: false 
   },
   { 
-    title: "Financial Advisory", 
-    description: "Optimize your financial resources and investments.", 
+    title: "E-commerce Solutions", 
+    description: "Create powerful online stores that drive sales.", 
     icon: DollarSign,
     highlighted: true 
   },
   { 
-    title: "Market Research", 
-    description: "Gain insights for informed decision-making.", 
+    title: "UI/UX Design", 
+    description: "Design beautiful and intuitive user experiences.", 
     icon: BarChart3,
     highlighted: false 
   },
   { 
-    title: "HR Management", 
-    description: "Build a motivated and efficient workforce.", 
+    title: "Custom Development", 
+    description: "Tailored solutions for your unique business needs.", 
     icon: Users,
     highlighted: false 
   },
@@ -80,7 +80,7 @@ export default function Services() {
           transition={{ duration: 0.7 }}
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
-            Tailored Solutions for Your Success
+            Services I Offer
           </h2>
         </motion.div>
 

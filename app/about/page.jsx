@@ -74,55 +74,71 @@ export default function About() {
 
   return (
     <>
-      <section className="pt-32 pb-8 md:pt-40 md:pb-10 dark:bg-black relative overflow-hidden">
-        {/* Background elements */}
-        <div className="absolute inset-0">
-          <motion.div
-            className="absolute top-20 left-10 w-72 h-72 bg-[#0ebab1]/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.div
-            className="absolute bottom-20 right-10 w-96 h-96 bg-[#22cec5]/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.4, 0.7, 0.4],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 2,
-            }}
-          />
+      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+        {/* Background Pattern - matching home page */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
+          <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="wave-pattern-about" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <path
+                  d="M0 50 Q 50 25, 100 50 T 200 50"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                  className="text-gray-900 dark:text-white"
+                />
+                <path
+                  d="M0 80 Q 50 55, 100 80 T 200 80"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                  className="text-gray-900 dark:text-white"
+                />
+                <path
+                  d="M50 0 Q 25 50, 50 100 T 50 200"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                  className="text-gray-900 dark:text-white"
+                />
+                <path
+                  d="M80 0 Q 55 50, 80 100 T 80 200"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                  className="text-gray-900 dark:text-white"
+                />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#wave-pattern-about)" />
+          </svg>
         </div>
 
-        <div className="container relative z-10">
+        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             ref={heroRef}
-            className="max-w-3xl mx-auto text-center mb-6"
+            className="max-w-3xl mx-auto text-center mb-16"
             variants={containerVariants}
             initial="hidden"
             animate={isHeroInView ? "visible" : "hidden"}
           >
-            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-6">
+            <motion.h1 
+              variants={itemVariants} 
+              className="text-5xl md:text-6xl font-bold mb-6 text-[#222222] dark:text-white"
+            >
               About Me
             </motion.h1>
-            <motion.p variants={itemVariants} className="text-xl text-gray-600 dark:text-gray-300">
+            <motion.p 
+              variants={itemVariants} 
+              className="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed"
+            >
               Passionate web developer with expertise in creating custom solutions that drive business growth
             </motion.p>
           </motion.div>
 
           {/* Stats Section */}
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto"
             variants={containerVariants}
             initial="hidden"
             animate={isHeroInView ? "visible" : "hidden"}
@@ -131,33 +147,33 @@ export default function About() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="text-center p-4 rounded-lg bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200 dark:border-gray-800 hover:border-[#0ebab1]/50 transition-all duration-300"
+                className="text-center p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
                 whileHover={{ scale: 1.05, y: -5 }}
               >
                 <motion.div
-                  className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 mb-3 ${stat.color}`}
+                  className={`inline-flex items-center justify-center w-14 h-14 rounded-full bg-gray-100 dark:bg-gray-700 mb-4 ${stat.color}`}
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <stat.icon size={24} />
+                  <stat.icon size={28} />
                 </motion.div>
                 <motion.div
-                  className="text-2xl font-bold text-gray-900 dark:text-white mb-1"
+                  className="text-3xl font-bold text-gray-900 dark:text-white mb-2"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={isHeroInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                   transition={{ delay: index * 0.2 + 0.5, duration: 0.5 }}
                 >
                   {stat.value}
                 </motion.div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+                <div className="text-sm font-medium text-gray-600 dark:text-gray-400">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50 dark:bg-black relative overflow-hidden">
-        <div className="container">
+      <section className="py-20 bg-gray-50 dark:bg-black relative overflow-hidden">
+        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             ref={journeyRef}
             className="grid md:grid-cols-2 gap-12 items-center"
@@ -167,7 +183,7 @@ export default function About() {
           >
             <motion.div variants={itemVariants}>
               <motion.h2
-                className="text-3xl font-bold mb-6"
+                className="text-4xl md:text-5xl font-bold mb-8 text-[#222222] dark:text-white"
                 initial={{ opacity: 0, x: -30 }}
                 animate={isJourneyInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
                 transition={{ duration: 0.8 }}
@@ -183,7 +199,7 @@ export default function About() {
                 ].map((paragraph, index) => (
                   <motion.p
                     key={index}
-                    className="text-gray-600 dark:text-gray-300"
+                    className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed"
                     initial={{ opacity: 0, y: 20 }}
                     animate={isJourneyInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ delay: index * 0.2 + 0.3, duration: 0.6 }}
@@ -194,39 +210,13 @@ export default function About() {
               </motion.div>
             </motion.div>
 
-            <motion.div className="relative h-[500px] mt-8 rounded-lg overflow-hidden" variants={itemVariants}>
-              {/* Enhanced fade effects */}
-              <motion.div
-                className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-gray-50 to-transparent z-10 dark:from-black"
-                initial={{ opacity: 0 }}
-                animate={isJourneyInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ delay: 0.5 }}
-              />
-              <motion.div
-                className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-gray-50 to-transparent z-10 dark:from-black"
-                initial={{ opacity: 0 }}
-                animate={isJourneyInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ delay: 0.5 }}
-              />
-              <motion.div
-                className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-gray-50 to-transparent z-10 dark:from-black"
-                initial={{ opacity: 0 }}
-                animate={isJourneyInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ delay: 0.5 }}
-              />
-              <motion.div
-                className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-gray-50 to-transparent z-10 dark:from-black"
-                initial={{ opacity: 0 }}
-                animate={isJourneyInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ delay: 0.5 }}
-              />
-
+            <motion.div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl" variants={itemVariants}>
               <motion.div
                 className="relative w-full h-full"
                 initial={{ scale: 1.1, opacity: 0 }}
                 animate={isJourneyInView ? { scale: 1, opacity: 1 } : { scale: 1.1, opacity: 0 }}
                 transition={{ duration: 1, ease: "easeOut" }}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.02 }}
               >
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/mypic.jpg-AOcmBlV6G41G6JrZZ5XzlIcY2J2GrN.jpeg"
@@ -240,10 +230,10 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-16 dark:bg-black">
-        <div className="container">
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.h2
-            className="text-3xl font-bold mb-8 text-center"
+            className="text-4xl md:text-5xl font-bold mb-12 text-center text-[#222222] dark:text-white"
             initial={{ opacity: 0, y: 30 }}
             animate={isExpertiseInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8 }}
@@ -253,90 +243,59 @@ export default function About() {
 
           <motion.div
             ref={expertiseRef}
-            className="grid md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             variants={containerVariants}
             initial="hidden"
             animate={isExpertiseInView ? "visible" : "hidden"}
           >
-            <motion.div
-              className="card"
-              variants={itemVariants}
-              whileHover={{ scale: 1.02, y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h3 className="text-xl font-bold mb-4">Technical Skills</h3>
-              <ul className="space-y-3">
-                {[
-                  "Full-stack development with MERN stack",
-                  "Responsive and mobile-first design",
-                  "E-commerce development (Shopify, WooCommerce)",
-                  "CMS implementation and customization",
-                  "API development and integration",
-                  "Database design and optimization",
-                ].map((skill, index) => (
-                  <motion.li
-                    key={index}
-                    className="flex items-start gap-3"
-                    variants={skillVariants}
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <motion.div
-                      initial={{ scale: 0, rotate: -180 }}
-                      animate={isExpertiseInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-                      transition={{ delay: index * 0.1 + 0.3, duration: 0.4 }}
-                    >
-                      <CheckCircle size={20} className="text-primary mt-1 shrink-0" />
-                    </motion.div>
-                    <span className="dark:text-gray-300">{skill}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div
-              className="card"
-              variants={itemVariants}
-              whileHover={{ scale: 1.02, y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h3 className="text-xl font-bold mb-4">Professional Approach</h3>
-              <ul className="space-y-3">
-                {[
-                  "User-centered design thinking",
-                  "Agile development methodology",
-                  "Clear communication and collaboration",
-                  "Problem-solving mindset",
-                  "Attention to detail and quality",
-                  "Continuous learning and improvement",
-                ].map((skill, index) => (
-                  <motion.li
-                    key={index}
-                    className="flex items-start gap-3"
-                    variants={skillVariants}
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <motion.div
-                      initial={{ scale: 0, rotate: -180 }}
-                      animate={isExpertiseInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-                      transition={{ delay: index * 0.1 + 0.6, duration: 0.4 }}
-                    >
-                      <CheckCircle size={20} className="text-primary mt-1 shrink-0" />
-                    </motion.div>
-                    <span className="dark:text-gray-300">{skill}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
+            {[
+              {
+                icon: Code,
+                title: "Full-Stack Development",
+                description: "MERN stack expertise with modern frameworks and tools.",
+              },
+              {
+                icon: Briefcase,
+                title: "E-Commerce Solutions",
+                description: "Shopify, WooCommerce, and custom platforms.",
+              },
+              {
+                icon: GraduationCap,
+                title: "CMS Implementation",
+                description: "WordPress, Odoo, and headless CMS solutions.",
+              },
+              {
+                icon: Award,
+                title: "API Development",
+                description: "RESTful APIs and database optimization.",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700"
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div
+                  className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gray-900 dark:bg-white mb-4"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <item.icon size={28} className="text-white dark:text-gray-900" />
+                </motion.div>
+                <h3 className="text-lg font-bold mb-2 text-[#222222] dark:text-white">{item.title}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{item.description}</p>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50 dark:bg-black">
-        <div className="container">
+      <section className="py-20 bg-gray-50 dark:bg-black">
+        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.h2
-            className="text-3xl font-bold mb-8 text-center"
+            className="text-4xl md:text-5xl font-bold mb-16 text-center text-[#222222] dark:text-white"
             initial={{ opacity: 0, y: 30 }}
             animate={isExperienceInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8 }}
@@ -346,125 +305,74 @@ export default function About() {
 
           <motion.div
             ref={experienceRef}
-            className="grid md:grid-cols-2 gap-12"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
             variants={containerVariants}
             initial="hidden"
             animate={isExperienceInView ? "visible" : "hidden"}
           >
-            <motion.div variants={itemVariants}>
-              <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }}>
-                  <Briefcase size={24} className="text-primary" />
+            {[
+              {
+                icon: Briefcase,
+                title: "Senior Web Developer",
+                company: "Devmerce - Present",
+                description: "Leading web development projects for enterprise clients.",
+              },
+              {
+                icon: Code,
+                title: "Web Developer",
+                company: "Web Dev Company",
+                description: "Built responsive websites and e-commerce platforms.",
+              },
+              {
+                icon: Users,
+                title: "Freelancer",
+                company: "Upwork and Airtasker",
+                description: "Created user interfaces and frontend functionality.",
+              },
+              {
+                icon: GraduationCap,
+                title: "Bachelor's in Software Engineering",
+                company: "University",
+                description: "Specialized in web technologies and software engineering.",
+              },
+              {
+                icon: Award,
+                title: "ICS",
+                company: "Gordon College Rwp",
+                description: "Focused on programming and web development.",
+              },
+              {
+                icon: CheckCircle,
+                title: "Professional Certification",
+                company: "Intern at Codexsolution",
+                description: "Certified in MongoDB, React, and AWS.",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700"
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div
+                  className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gray-900 dark:bg-white mb-4"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <item.icon size={28} className="text-white dark:text-gray-900" />
                 </motion.div>
-                Work Experience
-              </h3>
-              <div className="space-y-8">
-                {[
-                  {
-                    title: "Senior Web Developer",
-                    company: "Devmerce - Present",
-                    description:
-                      "Leading web development projects for enterprise clients, focusing on scalable and maintainable solutions.",
-                  },
-                  {
-                    title: "Web Developer",
-                    company: "Web Dev Company",
-                    description:
-                      "Developed responsive websites and e-commerce platforms for small to medium-sized businesses.",
-                  },
-                  {
-                    title: "Freelancer",
-                    company: "Upwork and Airtasker",
-                    description: "Created user interfaces and implemented frontend functionality for web applications.",
-                  },
-                ].map((job, index) => (
-                  <motion.div
-                    key={index}
-                    className="relative pl-8 border-l border-gray-300 dark:border-gray-700"
-                    variants={timelineVariants}
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <motion.div
-                      className="absolute left-0 top-0 w-4 h-4 rounded-full bg-[#0ebab1] -translate-x-2"
-                      initial={{ scale: 0 }}
-                      animate={isExperienceInView ? { scale: 1 } : { scale: 0 }}
-                      transition={{ delay: index * 0.2 + 0.3, duration: 0.4 }}
-                      whileHover={{ scale: 1.5 }}
-                    />
-                    <h4 className="text-lg font-semibold">{job.title}</h4>
-                    <p className="text-[#0ebab1]">{job.company}</p>
-                    <p className="text-gray-600 dark:text-gray-400 mt-2">{job.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }}>
-                  <GraduationCap size={24} className="text-primary" />
-                </motion.div>
-                Education
-              </h3>
-              <div className="space-y-8">
-                {[
-                  {
-                    title: "Bachelor's in Software Engineering",
-                    company: "University",
-                    description: "Specialized in web technologies and software engineering.",
-                  },
-                  {
-                    title: "ICS",
-                    company: "Gordon College Rwp",
-                    description: "Focused on programming, database management, and web development.",
-                  },
-                  {
-                    title: "Professional Certification",
-                    company: "Intern at Codexsolution",
-                    description: "Various certifications in web technologies, including MongoDB, React, and AWS.",
-                  },
-                ].map((education, index) => (
-                  <motion.div
-                    key={index}
-                    className="relative pl-8 border-l border-gray-300 dark:border-gray-700"
-                    variants={timelineVariants}
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <motion.div
-                      className="absolute left-0 top-0 w-4 h-4 rounded-full bg-[#0ebab1] -translate-x-2"
-                      initial={{ scale: 0 }}
-                      animate={isExperienceInView ? { scale: 1 } : { scale: 0 }}
-                      transition={{ delay: index * 0.2 + 0.6, duration: 0.4 }}
-                      whileHover={{ scale: 1.5 }}
-                    />
-                    <h4 className="text-lg font-semibold">{education.title}</h4>
-                    <p className="text-[#0ebab1]">{education.company}</p>
-                    <p className="text-gray-600 dark:text-gray-400 mt-2">{education.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+                <h3 className="text-lg font-bold mb-1 text-[#222222] dark:text-white">{item.title}</h3>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-300 mb-2">{item.company}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{item.description}</p>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
 
-      <section className="py-16 dark:bg-black relative overflow-hidden">
-        {/* Background animation */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#0ebab1]/5 to-transparent"
-          animate={{
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-
-        <div className="container relative z-10">
+      <section className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 30 }}
@@ -473,7 +381,7 @@ export default function About() {
             viewport={{ once: true }}
           >
             <motion.h2
-              className="text-3xl font-bold mb-6"
+              className="text-4xl md:text-5xl font-bold mb-6 text-[#222222] dark:text-white"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -482,7 +390,7 @@ export default function About() {
               Let's Work Together
             </motion.h2>
             <motion.p
-              className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto"
+              className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -496,11 +404,15 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
-              <Link href="/contact" className="btn-primary">
-                Get In Touch
+              <Link href="/contact">
+                <motion.button
+                  className="bg-gray-900 dark:bg-gray-700 text-white px-8 py-4 rounded-full font-medium text-base hover:bg-gray-800 dark:hover:bg-gray-600 transition-all shadow-lg hover:shadow-xl"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Get In Touch
+                </motion.button>
               </Link>
             </motion.div>
           </motion.div>

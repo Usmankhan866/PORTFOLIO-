@@ -10,7 +10,7 @@ const testimonials = [
     name: "Emily Richards",
     company: "Apex Innovations Inc.",
     content:
-      "Biztar Consulting's innovative strategies and unwavering commitment to our vision revolutionized our business. Their deep expertise, personalized guidance, and tireless dedication led us to a remarkable 40% increase in revenue. We couldn't have asked for a better partner in our journey to success.",
+      "Usman's technical expertise and dedication to our project exceeded all expectations. He delivered a stunning e-commerce platform that not only looks amazing but performs flawlessly. Our online sales increased by 40% within the first month. Highly recommended!",
     image: "/images/client1.jpg",
     role: "CEO",
   },
@@ -18,7 +18,7 @@ const testimonials = [
     name: "Michael Chen",
     company: "Global Solutions",
     content:
-      "Working with this team has been transformative for our organization. Their strategic approach and attention to detail helped us streamline operations and achieve unprecedented growth. The results speak for themselves.",
+      "Working with Usman was an absolute pleasure. His attention to detail and ability to translate our vision into a functional web application was impressive. The project was delivered on time and the results speak for themselves.",
     image: "/images/client2.jpg",
     role: "Operations Director",
   },
@@ -26,7 +26,7 @@ const testimonials = [
     name: "Sarah Johnson",
     company: "TechStart Inc.",
     content:
-      "The level of professionalism and expertise demonstrated throughout our engagement was exceptional. Their innovative solutions and commitment to excellence have positioned us for long-term success in our industry.",
+      "Usman's professionalism and technical skills are top-notch. He built our company website from scratch with modern technologies and best practices. The site is fast, responsive, and has significantly improved our online presence.",
     image: "/images/client3.jpg",
     role: "Marketing Director",
   },

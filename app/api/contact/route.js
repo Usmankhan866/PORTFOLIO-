@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 
-export async function POST(request: Request) {
+export async function POST(request) {
   try {
     const formData = await request.formData()
-    const name = formData.get("name") as string
-    const email = formData.get("email") as string
-    const subject = formData.get("subject") as string
-    const message = formData.get("message") as string
+    const name = formData.get("name")
+    const email = formData.get("email")
+    const subject = formData.get("subject")
+    const message = formData.get("message")
 
     // Validate form data
     if (!name || !email || !subject || !message) {

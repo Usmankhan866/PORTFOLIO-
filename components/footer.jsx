@@ -21,7 +21,7 @@ export default function Footer() {
         {/* Newsletter Section */}
         <div className="mb-12 md:mb-16">
           <h3 className="text-lg md:text-xl font-semibold mb-4">
-            Stay Informed. Subscribe to our Newsletter!
+            Let's Work Together. Get In Touch!
           </h3>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md">
             <input
@@ -46,9 +46,10 @@ export default function Footer() {
           
           {/* Address */}
           <div>
-            <h4 className="font-semibold mb-4 text-base">Address</h4>
+            <h4 className="font-semibold mb-4 text-base">Contact</h4>
             <p className="text-gray-400 text-sm leading-relaxed">
-              123 Business Blvd, City, ST ZIP
+              Email: usman@webdev.com<br />
+              Available for freelance projects
             </p>
           </div>
 
@@ -77,15 +78,15 @@ export default function Footer() {
                   href="/services"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  Pricing
+                  Services
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/contact"
+                  href="/projects"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  Blog
+                  Projects
                 </Link>
               </li>
             </ul>
@@ -100,7 +101,7 @@ export default function Footer() {
                   href="/services"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  Strategic Planning
+                  Web Development
                 </Link>
               </li>
               <li>
@@ -108,7 +109,7 @@ export default function Footer() {
                   href="/services"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  Financial Advisory
+                  E-commerce Solutions
                 </Link>
               </li>
               <li>
@@ -116,7 +117,7 @@ export default function Footer() {
                   href="/services"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  Market Research
+                  UI/UX Design
                 </Link>
               </li>
               <li>
@@ -124,7 +125,7 @@ export default function Footer() {
                   href="/services"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  HR Management
+                  Custom Development
                 </Link>
               </li>
               <li>
@@ -132,7 +133,7 @@ export default function Footer() {
                   href="/services"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  Technology Integration
+                  API Integration
                 </Link>
               </li>
             </ul>
@@ -185,14 +186,14 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-[#f4f27e] rounded flex items-center justify-center">
-                <span className="text-gray-900 font-bold text-lg">B</span>
+                <span className="text-gray-900 font-bold text-lg">U</span>
               </div>
-              <span className="font-bold text-xl">Biztar.</span>
+              <span className="font-bold text-xl">Usman Khan</span>
             </div>
           </div>
 
           <p className="text-gray-400 text-sm text-center md:text-left order-3 md:order-2">
-            © 2023 Biztar Consulting. All Rights Reserved.
+            © 2024 Usman Khan. All Rights Reserved.
           </p>
 
           {/* Social Icons */}

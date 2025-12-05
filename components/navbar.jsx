@@ -10,8 +10,7 @@ const navItems = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
   { name: "Services", href: "/services" },
-  { name: "Blog", href: "/blog" },
-  { name: "Pricing", href: "/pricing" },
+  {name: "projects", href: "/projects" },
 ]
 
 export default function Navbar() {
@@ -32,7 +31,10 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <span className="text-2xl font-bold text-gray-800 dark:text-white">
-                B<span className="text-gray-600 dark:text-gray-300">iztar.</span>
+                <span className="text-gray-600 dark:text-gray-300">
+  &lt;Usman/&gt;
+</span>
+
               </span>
             </Link>
 

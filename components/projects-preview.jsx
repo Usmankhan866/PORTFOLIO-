@@ -11,7 +11,7 @@ const featuredProjects = [
   {
     title: "Vapes Direct",
     description: "A comprehensive e-commerce platform for vaping products built on Shopify.",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vapes%20Direct-cWRJDS4z1OX8rhVN1Q3K3HzJO4jC7N.png",
+    image: "/images/project1.jpg",
     tags: ["Shopify", "Liquid", "JavaScript"],
     link: "/projects/vapes-direct",
     external: "https://vapesdirect.pk/",
@@ -19,7 +19,7 @@ const featuredProjects = [
   {
     title: "Memecoins Agents",
     description: "A cryptocurrency platform built with Next.js and React for meme coin enthusiasts.",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bussiness%20WEB-WZWk8NWWOfwihVB0U9UZNhAVr9huWS.png",
+    image: "/images/project2.jpg",
     tags: ["React", "Next.js", "Node.js"],
     link: "/projects/business-web",
     external: "http://memecoinsagent.info/",
@@ -27,7 +27,7 @@ const featuredProjects = [
   {
     title: "Devmerce Blog",
     description: "A modern, responsive WordPress blog focused on technology and business news.",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blogging%20WEB-rkxe8jlrRdsLeJlgl2ylJZypLvYPlx.png",
+    image: "/images/project3.jpg",
     tags: ["WordPress", "PHP", "JavaScript"],
     link: "/projects/blogging-web",
     external: "https://devmerce.blog/",

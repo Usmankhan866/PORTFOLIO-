@@ -9,49 +9,49 @@ const methodologySteps = [
   {
     number: "01",
     title: "Discovery",
-    description: "Uncover opportunities and challenges for strategic planning.",
+    description: "Understanding your requirements and project goals thoroughly.",
     highlighted: true,
     icon: Search,
   },
   {
     number: "02",
-    title: "Analysis",
-    description: "Thoroughly examine data and market trends for informed decision-making.",
+    title: "Planning",
+    description: "Creating detailed project roadmap and technical architecture.",
     highlighted: false,
     icon: BarChart3,
   },
   {
     number: "03",
-    title: "Strategy",
-    description: "Craft tailored strategies aligned with your business objectives.",
+    title: "Design",
+    description: "Crafting intuitive UI/UX designs aligned with your brand.",
     highlighted: true,
     icon: Target,
   },
   {
     number: "04",
-    title: "Implementation",
-    description: "Execute plans with precision, integrating technology for optimal results.",
+    title: "Development",
+    description: "Building robust and scalable web solutions with modern technologies.",
     highlighted: false,
     icon: Rocket,
   },
   {
     number: "05",
-    title: "Optimization",
-    description: "Continuously refine strategies for ongoing business efficiency and growth.",
+    title: "Testing",
+    description: "Rigorous quality assurance to ensure flawless performance.",
     highlighted: true,
     icon: Repeat,
   },
   {
     number: "06",
-    title: "Evaluation",
-    description: "Assess performance metrics to ensure goals are being met effectively.",
+    title: "Deployment",
+    description: "Launching your project smoothly to production environment.",
     highlighted: false,
     icon: CheckCircle,
   },
   {
     number: "07",
-    title: "Advisory",
-    description: "Receive ongoing expert consultation for sustained success.",
+    title: "Support",
+    description: "Ongoing maintenance and technical support for your peace of mind.",
     highlighted: true,
     icon: Headphones,
   },
@@ -89,13 +89,13 @@ export default function Methodology() {
         >
           <div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
-              Our Proven Methodology<br />
+              My Development Process<br />
               for Success
             </h2>
           </div>
           <div className="flex items-start lg:items-center">
             <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Navigate the Path to Prosperity with Biztar's Comprehensive and Effective Business Consulting Process.
+              A systematic approach to delivering high-quality web solutions from concept to deployment and beyond.
             </p>
           </div>
         </motion.div>
@@ -199,7 +199,7 @@ export default function Methodology() {
           <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 rounded-full shadow-lg border-2 border-gray-200 dark:border-gray-700">
             <Repeat className="text-gray-700 dark:text-gray-300" size={18} />
             <p className="text-xs font-semibold text-gray-800 dark:text-gray-200">
-              Following SDLC Agile Approach for Iterative Excellence
+              Following Agile Development for Iterative Excellence
             </p>
           </div>
         </motion.div>
