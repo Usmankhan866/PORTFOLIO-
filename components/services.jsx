@@ -5,12 +5,10 @@ import {
   DollarSign,
   BarChart3,
   Users,
-  ArrowLeft,
-  ArrowRight,
 } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { useInView } from "framer-motion"
 
 const services = [
@@ -59,34 +57,25 @@ const cardVariants = {
 export default function Services() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : 0))
-  }
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev < services.length - 4 ? prev + 1 : prev))
-  }
 
   return (
-    <section className="relative py-12 md:py-16 bg-white dark:bg-gray-900">
-     <div className="w-full max-w-[1400px] mx-auto relative z-10 px-4 sm:px-6">
+    <section className="relative py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
+     <div className="w-full max-w-[1400px] mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
 
         <motion.div
-          className="text-center mb-10 md:mb-12"
+          className="text-center mb-8 sm:mb-10 md:mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white px-4">
             Services I Offer
           </h2>
         </motion.div>
 
         <motion.div
           ref={ref}
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8"
+          className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-8"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -94,7 +83,7 @@ export default function Services() {
           {services.map((service, idx) => (
             <motion.div
               key={idx}
-              className={`group relative p-6 rounded-2xl transition-all duration-300 ${
+              className={`group relative p-5 sm:p-6 rounded-2xl transition-all duration-300 ${
                 service.highlighted
                   ? "bg-[#f4f27e] dark:bg-[#e8e66f]"
                   : "bg-gray-100 dark:bg-gray-800"
@@ -139,9 +128,9 @@ export default function Services() {
           ))}
         </motion.div>
 
-        {/* Bottom Section - Button and Navigation */}
+        {/* Bottom Section - Button */}
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="flex justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -155,29 +144,6 @@ export default function Services() {
               View More Services
             </motion.button>
           </Link>
-
-          {/* Navigation Arrows */}
-          <div className="flex gap-2">
-            <motion.button
-              onClick={handlePrev}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-10 h-10 flex items-center justify-center bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors shadow-lg"
-              aria-label="Previous"
-            >
-              <ArrowLeft size={18} />
-            </motion.button>
-            
-            <motion.button
-              onClick={handleNext}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-10 h-10 flex items-center justify-center bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors shadow-lg"
-              aria-label="Next"
-            >
-              <ArrowRight size={18} />
-            </motion.button>
-          </div>
         </motion.div>
       </div>
     </section>

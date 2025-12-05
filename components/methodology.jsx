@@ -103,7 +103,7 @@ export default function Methodology() {
         {/* Methodology Steps Grid - Parallel Layout */}
         <motion.div
           ref={ref}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 auto-rows-fr"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -112,7 +112,7 @@ export default function Methodology() {
           {methodologySteps.slice(0, 4).map((step, idx) => (
             <motion.div
               key={idx}
-              className={`relative p-4 rounded-xl transition-all duration-300 ${
+              className={`relative p-3 sm:p-4 rounded-xl transition-all duration-300 ${
                 step.highlighted
                   ? "bg-[#f4f27e] dark:bg-[#e8e66f]"
                   : "bg-[#d4dfe3] dark:bg-gray-800"
@@ -121,7 +121,7 @@ export default function Methodology() {
               whileHover={{ y: -3, scale: 1.01 }}
             >
               {/* Number Badge */}
-              <div className={`inline-flex items-center justify-center w-10 h-10 mb-3 rounded-lg font-bold text-lg ${
+              <div className={`inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 mb-2 sm:mb-3 rounded-lg font-bold text-base sm:text-lg ${
                 step.highlighted
                   ? "bg-[#e5e56d] dark:bg-[#dede60] text-gray-900"
                   : "bg-[#b8c9cf] dark:bg-gray-700 text-gray-800 dark:text-gray-200"
@@ -129,7 +129,7 @@ export default function Methodology() {
                 {step.number}
               </div>
 
-              <h3 className={`text-base font-bold mb-1.5 ${
+              <h3 className={`text-sm sm:text-base font-bold mb-1 sm:mb-1.5 ${
                 step.highlighted
                   ? "text-gray-900 dark:text-gray-900"
                   : "text-gray-900 dark:text-white"
@@ -137,7 +137,7 @@ export default function Methodology() {
                 {step.title}
               </h3>
 
-              <p className={`leading-relaxed text-xs ${
+              <p className={`leading-relaxed text-[11px] sm:text-xs ${
                 step.highlighted
                   ? "text-gray-700 dark:text-gray-700"
                   : "text-gray-700 dark:text-gray-400"
@@ -152,7 +152,7 @@ export default function Methodology() {
             {methodologySteps.slice(4).map((step, idx) => (
               <motion.div
                 key={idx + 4}
-                className={`relative p-4 rounded-xl transition-all duration-300 ${
+                className={`relative p-3 sm:p-4 rounded-xl transition-all duration-300 ${
                   step.highlighted
                     ? "bg-[#f4f27e] dark:bg-[#e8e66f]"
                     : "bg-[#d4dfe3] dark:bg-gray-800"
@@ -161,7 +161,7 @@ export default function Methodology() {
                 whileHover={{ y: -3, scale: 1.01 }}
               >
                 {/* Number Badge */}
-                <div className={`inline-flex items-center justify-center w-10 h-10 mb-3 rounded-lg font-bold text-lg ${
+                <div className={`inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 mb-2 sm:mb-3 rounded-lg font-bold text-base sm:text-lg ${
                   step.highlighted
                     ? "bg-[#e5e56d] dark:bg-[#dede60] text-gray-900"
                     : "bg-[#b8c9cf] dark:bg-gray-700 text-gray-800 dark:text-gray-200"
@@ -169,7 +169,7 @@ export default function Methodology() {
                   {step.number}
                 </div>
 
-                <h3 className={`text-base font-bold mb-1.5 ${
+                <h3 className={`text-sm sm:text-base font-bold mb-1 sm:mb-1.5 ${
                   step.highlighted
                     ? "text-gray-900 dark:text-gray-900"
                     : "text-gray-900 dark:text-white"
@@ -177,7 +177,7 @@ export default function Methodology() {
                   {step.title}
                 </h3>
 
-                <p className={`leading-relaxed text-xs ${
+                <p className={`leading-relaxed text-[11px] sm:text-xs ${
                   step.highlighted
                     ? "text-gray-700 dark:text-gray-700"
                     : "text-gray-700 dark:text-gray-400"

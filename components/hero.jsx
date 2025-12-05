@@ -42,7 +42,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative min-h-[85vh] flex items-center bg-white dark:bg-gray-900 pt-32 pb-16 overflow-hidden">
+    <section className="relative min-h-[85vh] flex items-center bg-white dark:bg-gray-900 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 overflow-hidden">
       {/* Web Developer Wave Pattern Background */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.08] dark:opacity-[0.12]">
         <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -156,34 +156,34 @@ export default function Hero() {
           
           {/* Left Section - Text Content */}
           <motion.div 
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6 text-center lg:text-left order-1 lg:order-1"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             <motion.h1 
-  variants={itemVariants}
-  className="text-6xl sm:text-7xl lg:text-6xl xl:text-7xl font-bold text-[#222222] dark:text-white leading-tight"
->
-  Hi !!! 
-  Here's Usman Khan
-  <br /> Full Stack Web Developer
-</motion.h1>
-
+              variants={itemVariants}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#222222] dark:text-white leading-tight"
+            >
+              Hi !!! 
+              <br className="hidden sm:block" />
+              <span className="block sm:inline"> Here's Usman Khan</span>
+             Full Stack Web Developer
+            </motion.h1>
 
             <motion.p 
               variants={itemVariants}
-              className="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl"
+              className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
               Transforming ideas into powerful web applications. I specialize in building modern, scalable, and user-friendly websites that drive results. Let's bring your vision to life.
             </motion.p>
 
             <motion.div 
               variants={itemVariants}
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
             >
               <motion.button
-                className="bg-gray-900 dark:bg-gray-700 text-white px-7 py-3.5 rounded-full font-medium text-base hover:bg-gray-800 dark:hover:bg-gray-600 transition-all shadow-lg hover:shadow-xl"
+                className="bg-gray-900 dark:bg-gray-700 text-white px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-medium text-sm sm:text-base hover:bg-gray-800 dark:hover:bg-gray-600 transition-all shadow-lg hover:shadow-xl w-full sm:w-auto"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -191,7 +191,7 @@ export default function Hero() {
               </motion.button>
               
               <motion.button
-                className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-900 dark:border-gray-600 px-7 py-3.5 rounded-full font-medium text-base hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"
+                className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-900 dark:border-gray-600 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-medium text-sm sm:text-base hover:bg-gray-50 dark:hover:bg-gray-700 transition-all w-full sm:w-auto"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -202,12 +202,12 @@ export default function Hero() {
 
           {/* Right Section - Orbital Rings Design */}
           <motion.div 
-            className="relative"
+            className="relative order-2 lg:order-2"
             variants={imageVariants}
             initial="hidden"
             animate="visible"
           >
-            <div className="relative w-full aspect-square max-w-sm lg:max-w-md mx-auto">
+            <div className="relative w-full aspect-square max-w-[280px] sm:max-w-sm lg:max-w-md mx-auto">
               {/* Orbital Rings Background */}
               <div className="absolute inset-0 flex items-center justify-center">
                 {/* Outer ring */}

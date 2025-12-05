@@ -42,140 +42,146 @@ export default function Footer() {
         </div>
 
         {/* Footer Grid */}
-        <div className="dark:bg-[#222222] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+        <div className="dark:bg-[#222222] grid grid-cols-2 gap-6 sm:gap-8 md:gap-12 mb-12">
           
-          {/* Address */}
-          <div>
-            <h4 className="font-semibold mb-4 text-base">Contact</h4>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Email: usman@webdev.com<br />
-              Available for freelance projects
-            </p>
+          {/* Column 1 - Contact & Quick Links */}
+          <div className="space-y-6 sm:space-y-8">
+            {/* Contact */}
+            <div>
+              <h4 className="font-semibold mb-4 text-base">Contact</h4>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Email: usman@webdev.com<br />
+                Available for freelance projects
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-semibold mb-4 text-base">Quick Links</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/about"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    Services
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/projects"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    Projects
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold mb-4 text-base">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/projects"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  Projects
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Column 2 - Services & Information */}
+          <div className="space-y-6 sm:space-y-8">
+            {/* Services */}
+            <div>
+              <h4 className="font-semibold mb-4 text-base">Services</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/services"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    Web Development
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    E-commerce Solutions
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    UI/UX Design
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    Custom Development
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    API Integration
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="font-semibold mb-4 text-base">Services</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/services"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  Web Development
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  E-commerce Solutions
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  UI/UX Design
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  Custom Development
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  API Integration
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Information */}
-          <div>
-            <h4 className="font-semibold mb-4 text-base">Information</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  Support
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  Terms & Conditions
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  Customer Service
-                </Link>
-              </li>
-            </ul>
+            {/* Information */}
+            <div>
+              <h4 className="font-semibold mb-4 text-base">Information</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    Support
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/terms"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    Terms & Conditions
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/privacy"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    Customer Service
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 

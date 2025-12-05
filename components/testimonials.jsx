@@ -127,7 +127,7 @@ export default function Testimonials() {
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.6, delay: 0.2 }}
                   >
-                    <div className="relative w-full max-w-[260px] mx-auto lg:mx-0">
+                    <div className="relative w-full max-w-[200px] sm:max-w-[220px] mx-auto lg:mx-0">
                       {/* Image Container */}
                       <div className="relative rounded-2xl overflow-hidden bg-[#a8c5cd] aspect-[3/4]">
                         <Image
@@ -140,8 +140,8 @@ export default function Testimonials() {
                       </div>
                       
                       {/* Yellow Quote Icon */}
-                      <div className="absolute -top-2 -right-2 w-11 h-11 rounded-full bg-[#f4f27e] flex items-center justify-center shadow-md">
-                        <Quote className="w-5 h-5 text-gray-800" fill="currentColor" />
+                      <div className="absolute -top-2 -right-2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#f4f27e] flex items-center justify-center shadow-md">
+                        <Quote className="w-4 h-4 sm:w-5 sm:h-5 text-gray-800" fill="currentColor" />
                       </div>
                     </div>
                   </motion.div>

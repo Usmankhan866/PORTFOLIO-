@@ -253,39 +253,59 @@ export default function About() {
                 icon: Code,
                 title: "Full-Stack Development",
                 description: "MERN stack expertise with modern frameworks and tools.",
+                highlighted: false,
               },
               {
                 icon: Briefcase,
                 title: "E-Commerce Solutions",
                 description: "Shopify, WooCommerce, and custom platforms.",
+                highlighted: true,
               },
               {
                 icon: GraduationCap,
                 title: "CMS Implementation",
                 description: "WordPress, Odoo, and headless CMS solutions.",
+                highlighted: false,
               },
               {
                 icon: Award,
                 title: "API Development",
                 description: "RESTful APIs and database optimization.",
+                highlighted: false,
               },
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700"
+                className={`p-6 rounded-2xl transition-all duration-300 ${
+                  item.highlighted
+                    ? "bg-[#f4f27e] dark:bg-[#e8e66f]"
+                    : "bg-gray-100 dark:bg-gray-800"
+                }`}
                 variants={itemVariants}
                 whileHover={{ scale: 1.05, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
                 <motion.div
-                  className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gray-900 dark:bg-white mb-4"
+                  className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4 ${
+                    item.highlighted
+                      ? "bg-[#222222] dark:bg-[#222222]"
+                      : "bg-[#222222] dark:bg-gray-900"
+                  }`}
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <item.icon size={28} className="text-white dark:text-gray-900" />
+                  <item.icon size={28} className="text-white" />
                 </motion.div>
-                <h3 className="text-lg font-bold mb-2 text-[#222222] dark:text-white">{item.title}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{item.description}</p>
+                <h3 className={`text-lg font-bold mb-2 ${
+                  item.highlighted
+                    ? "text-gray-900 dark:text-gray-900"
+                    : "text-[#222222] dark:text-white"
+                }`}>{item.title}</h3>
+                <p className={`text-sm ${
+                  item.highlighted
+                    ? "text-gray-700 dark:text-gray-700"
+                    : "text-gray-600 dark:text-gray-400"
+                }`}>{item.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -316,55 +336,81 @@ export default function About() {
                 title: "Senior Web Developer",
                 company: "Devmerce - Present",
                 description: "Leading web development projects for enterprise clients.",
+                highlighted: false,
               },
               {
                 icon: Code,
                 title: "Web Developer",
                 company: "Web Dev Company",
                 description: "Built responsive websites and e-commerce platforms.",
+                highlighted: true,
               },
               {
                 icon: Users,
                 title: "Freelancer",
                 company: "Upwork and Airtasker",
                 description: "Created user interfaces and frontend functionality.",
+                highlighted: false,
               },
               {
                 icon: GraduationCap,
                 title: "Bachelor's in Software Engineering",
                 company: "University",
                 description: "Specialized in web technologies and software engineering.",
+                highlighted: false,
               },
               {
                 icon: Award,
                 title: "ICS",
                 company: "Gordon College Rwp",
                 description: "Focused on programming and web development.",
+                highlighted: true,
               },
               {
                 icon: CheckCircle,
                 title: "Professional Certification",
                 company: "Intern at Codexsolution",
                 description: "Certified in MongoDB, React, and AWS.",
+                highlighted: false,
               },
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700"
+                className={`p-6 rounded-2xl transition-all duration-300 ${
+                  item.highlighted
+                    ? "bg-[#f4f27e] dark:bg-[#e8e66f]"
+                    : "bg-gray-100 dark:bg-gray-800"
+                }`}
                 variants={itemVariants}
                 whileHover={{ scale: 1.05, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
                 <motion.div
-                  className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gray-900 dark:bg-white mb-4"
+                  className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4 ${
+                    item.highlighted
+                      ? "bg-[#222222] dark:bg-[#222222]"
+                      : "bg-[#222222] dark:bg-gray-900"
+                  }`}
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <item.icon size={28} className="text-white dark:text-gray-900" />
+                  <item.icon size={28} className="text-white" />
                 </motion.div>
-                <h3 className="text-lg font-bold mb-1 text-[#222222] dark:text-white">{item.title}</h3>
-                <p className="text-sm font-medium text-gray-900 dark:text-gray-300 mb-2">{item.company}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{item.description}</p>
+                <h3 className={`text-lg font-bold mb-1 ${
+                  item.highlighted
+                    ? "text-gray-900 dark:text-gray-900"
+                    : "text-[#222222] dark:text-white"
+                }`}>{item.title}</h3>
+                <p className={`text-sm font-medium mb-2 ${
+                  item.highlighted
+                    ? "text-gray-800 dark:text-gray-800"
+                    : "text-gray-900 dark:text-gray-300"
+                }`}>{item.company}</p>
+                <p className={`text-sm ${
+                  item.highlighted
+                    ? "text-gray-700 dark:text-gray-700"
+                    : "text-gray-600 dark:text-gray-400"
+                }`}>{item.description}</p>
               </motion.div>
             ))}
           </motion.div>
